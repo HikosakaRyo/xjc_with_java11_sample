@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.glassfish.jaxb:jaxb-xjc:2.3.1'
+}
+
+task xjc(type:JavaExec) {
+    classpath configurations.xjc
+    main 'com.sun.tools.xjc.XJCFacade'
+    args "src/xsd/sample.xsd", "-p", "hoge.fuga", "-d", "build/xjc_output"
+}
